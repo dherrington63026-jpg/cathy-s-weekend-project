@@ -5,6 +5,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat:400,500,600,700,800|Mulish:400,500,600,700,800&display=swap">
 <style>:root{--text-scale:1;--heading-scale:1;--primary:#000000;--primary-ink:#ffffff;--primary-soft:#38c5b7;--link:#000000;--secondary:#3B2A33;--secondary-ink:#ffffff;--accent:#a87730;--accent-ink:#ffffff;--accent-on-dark:#E8A33D;--accent-on-primary:#E8A33D;--btn-on-dark:#E8A33D;--btn-on-dark-ink:#ffffff;--bg:#40E0D0;--surface:#FFFBF7;--text:#15181e;--muted:#5b6472;--line:#3bc8bb;--dark:#3B2A33;--dark-ink:#ffffff;--heading:"Caveat", cursive;--heading-sm:"Mulish", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;--body:"Mulish", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;--radius:20px;--btn-radius:20px;--pad:80px;--heading-weight:700;--heading-tracking:-0.02em;--btn-weight:700}</style>
+
 <style>/* Stylesheet for every published site. Colors, fonts and spacing come from the
    :root variables the renderer writes from the site's theme. */
 *,*:before,*:after{box-sizing:border-box}
@@ -86,10 +87,22 @@ body.is-editing .btn.is-empty{display:inline-flex;opacity:.45}
   .nav-toggle{display:block}
   .nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);flex-direction:column;padding:16px 24px;gap:14px;border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(0,0,0,.08)}
   .sec-header.nav-open .nav{display:flex}
-  .header-cta{margin-left:0}
+  .header-cta{margin-left:0;gap:10px}
+  .header-cta .btn{padding:9px 12px;font-size:.9rem;white-space:nowrap}
   .header-phone span{display:none}
+  .header-inner{gap:12px}
+  .logo{font-size:1.1rem;line-height:1.15;flex:1;min-width:0}
+  .sec-header.logo-large .logo{font-size:1.35rem}
+  .sec-header.logo-xl .logo{font-size:1.6rem}
+  .sec-header.logo-large .logo-img{height:48px;max-width:170px}
+  .sec-header.logo-xl .logo-img{height:56px;max-width:200px}
+  .sec-header.logo-large .header-inner,.sec-header.logo-xl .header-inner{min-height:76px}
   .sec-header.v-centered .header-inner{justify-content:space-between}
   .sec-header.v-centered .logo{width:auto}
+}
+@media (max-width:480px){
+  /* On a phone the header keeps the name, the menu and the phone icon; the big button lives in the hero. */
+  .header-cta .btn{display:none}
 }
 
 /* hero */
@@ -502,13 +515,28 @@ a{color:var(--link)}
 .hbadge .g-logo{width:22px;height:22px;font-size:.85rem}
 .hbadge-count{font-weight:500;opacity:.75;font-size:.85em}
 @media (max-width:860px){.hbadge-count{display:none}}
+
+/* products / services with prices */
+.prod{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;background:var(--surface)}
+.prod-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.prod-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.prod-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.prod-name{font-size:1.1rem;margin:0}
+.prod-price{font-weight:800;color:var(--primary);white-space:nowrap}
+.prod-text{color:var(--muted);font-size:.95rem}
+.prod .btn{margin-top:auto;align-self:flex-start}
+.prod-list .prod{flex-direction:row;align-items:center;padding:14px 18px}.prod-list .prod-body{padding:0;flex-direction:row;align-items:center;gap:18px;flex-wrap:wrap}.prod-list .prod-top{flex:1}.prod-list .prod .btn{margin-top:0}
+/* text-logo styles */
+.logo-style-bold .logo-text{font-weight:900;letter-spacing:-.03em}
+.logo-style-badge .logo-text{background:var(--primary);color:#fff;padding:4px 12px;border-radius:8px}
+.logo-style-outline .logo-text{border:2px solid var(--primary);padding:3px 11px;border-radius:8px;color:var(--primary)}
 </style>
 
 
 
 </head><body class="">
 <header class="sec sec-header v-simple bg-default pad-normal ts-m tt-m sticky logo-normal menu-normal"><div class="sec-inner"><div class="wrap header-inner">
-    <a class="logo" href="../index.html"><span class="logo-text">Cathy's Weekend Project</span></a>
+    <a class="logo logo-style-plain" href="../index.html"><span class="logo-text">Cathy's Weekend Project</span></a>
     <button class="nav-toggle" aria-label="Menu" data-nav-toggle><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     <nav class="nav"><a href="../index.html">Home</a><a href="../about/index.html">About</a><a href="../services/index.html">Services</a><a href="../gallery/index.html" class="active">Gallery</a><a href="https://www.facebook.com/share/1HjuesMRdN/?mibextid=wwXIfr" target="_blank" rel="noopener">Contact</a></nav>
     <div class="header-cta">
@@ -563,7 +591,7 @@ a{color:var(--link)}
       };
       var isLocal = /^(localhost|127\.)/.test(location.hostname) || location.protocol === 'file:';
       if (isLocal) { done(); return; }
-      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() })
+      fetch(form.getAttribute('action') || '/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() })
         .then(function (r) { if (!r.ok) throw new Error('send failed'); done(); })
         .catch(function () {
           if (btn) btn.disabled = false;

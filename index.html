@@ -122,6 +122,11 @@ body.is-editing .btn.is-empty{display:inline-flex;opacity:.45}
 .bg-primary .badge,.bg-dark .badge,.bg-image .badge{color:inherit;opacity:.9}
 .bg-primary .badge .ic,.bg-dark .badge .ic,.bg-image .badge .ic{color:var(--accent)}
 .sec-hero.v-centered,.sec-hero.v-fullbleed{color:#fff;min-height:560px;display:flex;align-items:center}
+/* the section is a flex box, so its inner (which carries the photo) must be told to fill it */
+.sec-hero.v-centered .sec-inner,.sec-hero.v-fullbleed .sec-inner{flex:1 1 auto;min-width:0;display:flex;align-items:center;min-height:inherit}
+/* the text sits ABOVE the photo and its dark overlay (both are absolutely positioned, so plain text would paint under them) */
+.sec-hero.v-centered .wrap,.sec-hero.v-fullbleed .wrap{position:relative;z-index:1;width:100%;min-width:0}
+.sec-hero.v-centered .hero-title,.sec-hero.v-fullbleed .hero-title,.sec-hero.v-centered .hero-text{color:#fff}
 .sec-hero.v-fullbleed{min-height:82vh}
 .sec-hero.v-centered .hero-text,.sec-hero.v-fullbleed .hero-text{max-width:760px}
 .sec-hero.v-centered .hero-text{margin:0 auto;text-align:center}
@@ -552,7 +557,7 @@ a{color:var(--link)}
       <div class="hero-sub"><p>Cathy has been sewing for the better part of a lifetime, and these days her craft room turns out machine-embroidered keychains, card holders, and 8x10 stitch art ready to frame, along with sewn purses, baby blankets, and plenty more. Each piece is made one at a time, and no two are quite alike.</p><p>Everything in the shop is finished and ships today — no waiting</p><p>Everything is made one at a time.</p></div>
       <div class="btns"></div>
       
-    </div><div class="hero-media"><img class="hero-img" src="assets/hero-6345.jpg" alt="Handmade gifts you won't find on a shelf" loading="eager" style="aspect-ratio:5/4;object-position:center"></div></div></div></section>
+    </div><div class="hero-media"><img class="hero-img" src="assets/img-2366-782a.jpg" alt="Handmade gifts you won't find on a shelf" loading="eager" style="aspect-ratio:5/4;object-position:center"></div></div></div></section>
 <section class="sec sec-features v-cards bg-default pad-normal ts-m tt-m" id="services"><div class="sec-inner"><div class="wrap"><div class="sec-head"><h2 class="sec-title">Ready-made pieces</h2><div class="sec-intro"><p>Lots of pieces made and in stock</p></div></div><div class="feat-grid cols-3"><div class="feat"><div class="feat-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2zM7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <div class="feat-body"><h3 class="feat-title">Sewn Purses &amp; Bags</h3><div class="feat-text"><p>Purses, zip pouches and roomy totes, some with machine embroidered design.&nbsp;</p></div></div></div><div class="feat"><div class="feat-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/></svg></div>
         <div class="feat-body"><h3 class="feat-title">Baby Blankets</h3><div class="feat-text"><p>Limited stock of quilted blankets and wall hanging .&nbsp;</p></div></div></div><div class="feat"><div class="feat-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3zM5 3v4M19 17v4M3 5h4M17 19h4"/></svg></div>

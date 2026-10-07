@@ -122,6 +122,11 @@ body.is-editing .btn.is-empty{display:inline-flex;opacity:.45}
 .bg-primary .badge,.bg-dark .badge,.bg-image .badge{color:inherit;opacity:.9}
 .bg-primary .badge .ic,.bg-dark .badge .ic,.bg-image .badge .ic{color:var(--accent)}
 .sec-hero.v-centered,.sec-hero.v-fullbleed{color:#fff;min-height:560px;display:flex;align-items:center}
+/* the section is a flex box, so its inner (which carries the photo) must be told to fill it */
+.sec-hero.v-centered .sec-inner,.sec-hero.v-fullbleed .sec-inner{flex:1 1 auto;min-width:0;display:flex;align-items:center;min-height:inherit}
+/* the text sits ABOVE the photo and its dark overlay (both are absolutely positioned, so plain text would paint under them) */
+.sec-hero.v-centered .wrap,.sec-hero.v-fullbleed .wrap{position:relative;z-index:1;width:100%;min-width:0}
+.sec-hero.v-centered .hero-title,.sec-hero.v-fullbleed .hero-title,.sec-hero.v-centered .hero-text{color:#fff}
 .sec-hero.v-fullbleed{min-height:82vh}
 .sec-hero.v-centered .hero-text,.sec-hero.v-fullbleed .hero-text{max-width:760px}
 .sec-hero.v-centered .hero-text{margin:0 auto;text-align:center}
